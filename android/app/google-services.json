@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1004880675178",
+    "project_id": "flipnotes-8758c",
+    "storage_bucket": "flipnotes-8758c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004880675178:android:6cdaf56da0e4a98fe86513",
+        "android_client_info": {
+          "package_name": "com.flipnotes.flipnotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKRyMTGEGfLahYkVa1u-0y7ukHiDEl_Uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

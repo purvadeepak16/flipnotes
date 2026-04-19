@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Check if the user is logged in
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper: Check if the user is the owner of the record
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Users collection: Only owners can read/write their own profiles and subcollections
+    match /users/{userId}/{document=**} {
+      allow read, write: if isAuthenticated() && isOwner(userId);
+    }
+    
+    // Groups collection
+    match /groups/{groupId} {
+      // Any logged in user can read, create or join (update member list)
+      allow read, create, update: if isAuthenticated();
+      
+      // Messages sub-collection: Any logged in user can read/write messages
+      // (Optionally restricted to group members)
+      match /messages/{messageId} {
+        allow read, write: if isAuthenticated();
+      }
+    }
+    
+    // Default: Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
